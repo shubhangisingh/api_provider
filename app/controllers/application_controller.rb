@@ -3,6 +3,14 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  def after_sign_in_path_for(resource)
+    if resource.is_a?(User)
+        admin_dashboard_path
+    else
+        root_path
+    end
+ end
+
   def authenticate_active_admin_user!
      authenticate_user!
      unless current_user.admin?
@@ -11,9 +19,5 @@ class ApplicationController < ActionController::Base
      end
   end
 
-  def check_user
-    if current_user.admin?
-      redirect_to admin_dashborad_path
-    end
-  end
+
 end

@@ -2,12 +2,7 @@ class Api::BlogsController < ApiBaseController
 	skip_before_filter :verify_authenticity_token, :only => [:create, :update]
 	before_filter :set_user
 	def index
-		if params[:tag]
-			@blogs = @user.Blog.tagged_with(params[:tag])
-		else
-			@blogs= @user.blogs.where(active: true)
-		end
-
+			@blogs= @user.blogs
 		respond_with @blogs
 	end
 	def show
