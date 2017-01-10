@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   namespace :api, defaults: {format: :json} do
    #post "blogs/create",  as: :blog_create_path
+   get '/me', to: 'users#show'
    resources :blogs, only: [:index, :show, :create]
   end
    root 'pages#index'

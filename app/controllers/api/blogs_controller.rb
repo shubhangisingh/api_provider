@@ -1,6 +1,5 @@
 class Api::BlogsController < ApiBaseController
 	skip_before_filter :verify_authenticity_token, :only => [:create, :update]
-	before_filter :set_user
 	def index
 			@blogs= @user.blogs
 		respond_with @blogs
@@ -21,7 +20,5 @@ class Api::BlogsController < ApiBaseController
 		params.require(:blog).permit!
 
 	end
-	def set_user
-      @user= current_user
-	end
+	
 end
