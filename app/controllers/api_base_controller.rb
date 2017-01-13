@@ -1,5 +1,5 @@
 class ApiBaseController < ApplicationController
-  before_action :doorkeeper_authorize!,:authenticate_user!, :set_user
+  before_action :doorkeeper_authorize!, :set_user
   respond_to :json
   private
 
@@ -9,5 +9,4 @@ class ApiBaseController < ApplicationController
   def set_user
       @user= current_resource_owner
 	end
-
 end
